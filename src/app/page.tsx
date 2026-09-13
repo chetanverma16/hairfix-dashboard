@@ -61,7 +61,7 @@ export default function Overview() {
             <TableHeader><TableRow><TableHead>Task</TableHead><TableHead>Target</TableHead><TableHead className="w-28">Owner</TableHead></TableRow></TableHeader>
             <TableBody>
               {weeklyActions.map((a) => (
-                <TableRow key={a.task}><TableCell>{a.task}</TableCell><TableCell className="text-muted-foreground">{a.target}</TableCell><TableCell><Badge variant="outline">{a.owner}</Badge></TableCell></TableRow>
+                <TableRow key={a.task}><TableCell>{a.task}</TableCell><TableCell className="whitespace-nowrap text-muted-foreground">{a.target}</TableCell><TableCell className="whitespace-nowrap"><Badge variant="outline">{a.owner}</Badge></TableCell></TableRow>
               ))}
             </TableBody>
           </Table>

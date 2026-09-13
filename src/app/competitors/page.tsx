@@ -14,11 +14,11 @@ export default function Competitors() {
             <TableBody>
               {competitorsNearby.map((c) => (
                 <TableRow key={c.name}>
-                  <TableCell className="font-medium">{c.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.area}</TableCell>
+                  <TableCell className="whitespace-nowrap font-medium">{c.name}</TableCell>
+                  <TableCell className="min-w-44 text-muted-foreground">{c.area}</TableCell>
                   <TableCell className="text-right tabular-nums">{c.rating.toFixed(1)}</TableCell>
                   <TableCell className="text-right tabular-nums">{c.reviews}</TableCell>
-                  <TableCell className="max-w-sm text-muted-foreground">{c.note}</TableCell>
+                  <TableCell className="min-w-72 text-muted-foreground">{c.note}</TableCell>
                   <TableCell className="whitespace-nowrap font-mono text-xs">{c.phone}</TableCell>
                 </TableRow>
               ))}

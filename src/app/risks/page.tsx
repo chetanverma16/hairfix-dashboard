@@ -15,9 +15,9 @@ export default function Risks() {
             <TableBody>
               {risks.map((r) => (
                 <TableRow key={r.risk}>
-                  <TableCell className="font-medium">{r.risk}</TableCell>
-                  <TableCell><Badge variant={r.severity === "High" ? "destructive" : r.severity === "Medium" ? "secondary" : "outline"}>{r.severity}</Badge></TableCell>
-                  <TableCell className="max-w-xl text-muted-foreground">{r.mitigation}</TableCell>
+                  <TableCell className="min-w-56 font-medium">{r.risk}</TableCell>
+                  <TableCell className="whitespace-nowrap"><Badge variant={r.severity === "High" ? "destructive" : r.severity === "Medium" ? "secondary" : "outline"}>{r.severity}</Badge></TableCell>
+                  <TableCell className="min-w-72 text-muted-foreground">{r.mitigation}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

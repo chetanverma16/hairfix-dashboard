@@ -27,12 +27,12 @@ export default function Locations() {
             <TableBody>
               {clusters.map((c) => (
                 <TableRow key={c.cluster}>
-                  <TableCell className="font-medium">{c.cluster}</TableCell>
+                  <TableCell className="whitespace-nowrap font-medium">{c.cluster}</TableCell>
                   <TableCell className="text-right tabular-nums">{c.studios}</TableCell>
                   <TableCell className="text-right tabular-nums">{c.reviews.toLocaleString("en-IN")}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.top}</TableCell>
-                  <TableCell className="max-w-sm text-muted-foreground">{c.read}</TableCell>
-                  <TableCell>{verdictBadge(c.verdict)}</TableCell>
+                  <TableCell className="min-w-48 text-muted-foreground">{c.top}</TableCell>
+                  <TableCell className="min-w-72 text-muted-foreground">{c.read}</TableCell>
+                  <TableCell className="whitespace-nowrap">{verdictBadge(c.verdict)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -33,8 +33,8 @@ export default function Revenue() {
             <TableBody>
               {rows.map((r) => (
                 <TableRow key={r.key} className={r.key === "revenue" || r.key === "profit" ? "font-medium" : ""}>
-                  <TableCell>{r.label}</TableCell>
-                  {scenarios.map((s) => <TableCell key={s.name} className="text-right tabular-nums">{r.money ? `₹${s[r.key]}L` : s[r.key]}</TableCell>)}
+                  <TableCell className="whitespace-nowrap">{r.label}</TableCell>
+                  {scenarios.map((s) => <TableCell key={s.name} className="whitespace-nowrap text-right tabular-nums">{r.money ? `₹${s[r.key]}L` : s[r.key]}</TableCell>)}
                 </TableRow>
               ))}
             </TableBody>

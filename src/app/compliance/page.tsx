@@ -15,11 +15,11 @@ export default function Compliance() {
             <TableBody>
               {compliance.map((c) => (
                 <TableRow key={c.item}>
-                  <TableCell className="font-medium">{c.item}</TableCell>
-                  <TableCell className="max-w-md text-muted-foreground">{c.detail}</TableCell>
+                  <TableCell className="whitespace-nowrap font-medium">{c.item}</TableCell>
+                  <TableCell className="min-w-72 text-muted-foreground">{c.detail}</TableCell>
                   <TableCell className="whitespace-nowrap">{c.cost}</TableCell>
                   <TableCell className="whitespace-nowrap">{c.time}</TableCell>
-                  <TableCell>{c.status === "na" ? <Badge variant="outline">Not needed</Badge> : <Badge variant="secondary">To do</Badge>}</TableCell>
+                  <TableCell className="whitespace-nowrap">{c.status === "na" ? <Badge variant="outline">Not needed</Badge> : <Badge variant="secondary">To do</Badge>}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

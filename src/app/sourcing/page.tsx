@@ -15,7 +15,7 @@ export default function Sourcing() {
             <CardContent>
               <Table>
                 <TableHeader><TableRow><TableHead>Supplier</TableHead><TableHead>City</TableHead><TableHead>Product</TableHead><TableHead>Price</TableHead><TableHead>Note</TableHead></TableRow></TableHeader>
-                <TableBody>{suppliersIndia.map((s) => <TableRow key={s.name}><TableCell className="font-medium">{s.name}</TableCell><TableCell>{s.city}</TableCell><TableCell className="text-muted-foreground">{s.product}</TableCell><TableCell className="whitespace-nowrap">{s.price}</TableCell><TableCell className="text-muted-foreground">{s.note}</TableCell></TableRow>)}</TableBody>
+                <TableBody>{suppliersIndia.map((s) => <TableRow key={s.name}><TableCell className="whitespace-nowrap font-medium">{s.name}</TableCell><TableCell className="whitespace-nowrap">{s.city}</TableCell><TableCell className="min-w-56 text-muted-foreground">{s.product}</TableCell><TableCell className="whitespace-nowrap">{s.price}</TableCell><TableCell className="text-muted-foreground">{s.note}</TableCell></TableRow>)}</TableBody>
               </Table>
             </CardContent>
           </Card>
@@ -26,7 +26,7 @@ export default function Sourcing() {
             <CardContent>
               <Table>
                 <TableHeader><TableRow><TableHead>Supplier</TableHead><TableHead>City</TableHead><TableHead>Stock (FOB)</TableHead><TableHead>Custom</TableHead><TableHead>MOQ</TableHead><TableHead>Lead time</TableHead><TableHead>Note</TableHead></TableRow></TableHeader>
-                <TableBody>{suppliersChina.map((s) => <TableRow key={s.name}><TableCell className="font-medium">{s.name}</TableCell><TableCell>{s.city}</TableCell><TableCell>{s.stock}</TableCell><TableCell>{s.custom}</TableCell><TableCell>{s.moq}</TableCell><TableCell className="text-muted-foreground">{s.lead}</TableCell><TableCell className="text-muted-foreground">{s.note}</TableCell></TableRow>)}</TableBody>
+                <TableBody>{suppliersChina.map((s) => <TableRow key={s.name}><TableCell className="whitespace-nowrap font-medium">{s.name}</TableCell><TableCell className="whitespace-nowrap">{s.city}</TableCell><TableCell className="whitespace-nowrap">{s.stock}</TableCell><TableCell className="whitespace-nowrap">{s.custom}</TableCell><TableCell className="whitespace-nowrap">{s.moq}</TableCell><TableCell className="whitespace-nowrap text-muted-foreground">{s.lead}</TableCell><TableCell className="text-muted-foreground">{s.note}</TableCell></TableRow>)}</TableBody>
               </Table>
             </CardContent>
           </Card>
@@ -35,7 +35,7 @@ export default function Sourcing() {
           <Card>
             <CardHeader><CardTitle>Landed cost of an $80 Qingdao custom system</CardTitle><CardDescription>Verify BCD for HSN 6704 on ICEGATE before the first shipment; use a CHA.</CardDescription></CardHeader>
             <CardContent>
-              <Table><TableBody>{landedCost.map((l) => <TableRow key={l.line} className={l.line.startsWith("Landed") ? "font-medium" : ""}><TableCell>{l.line}</TableCell><TableCell className="text-right tabular-nums">{l.amount}</TableCell></TableRow>)}</TableBody></Table>
+              <Table><TableBody>{landedCost.map((l) => <TableRow key={l.line} className={l.line.startsWith("Landed") ? "font-medium" : ""}><TableCell>{l.line}</TableCell><TableCell className="whitespace-nowrap text-right tabular-nums">{l.amount}</TableCell></TableRow>)}</TableBody></Table>
               <p className="mt-4 text-sm text-muted-foreground">A Qingdao piece lands at ~₹9K net vs ₹4–6K Indian. It is better made, lasts longer, and lets you sell a ₹35–45K tier credibly. Opening inventory: 6–8 Indian + 4–5 Qingdao stock pieces in 8×6&quot; and 9×7&quot;, #1B ≈ ₹80–90K.</p>
             </CardContent>
           </Card>
@@ -46,7 +46,7 @@ export default function Sourcing() {
             <CardContent>
               <Table>
                 <TableHeader><TableRow><TableHead>Base</TableHead><TableHead>Look</TableHead><TableHead>Life</TableHead><TableHead>Breathability</TableHead><TableHead>Use</TableHead></TableRow></TableHeader>
-                <TableBody>{baseTypes.map((b) => <TableRow key={b.base}><TableCell className="font-medium">{b.base}</TableCell><TableCell>{b.look}</TableCell><TableCell>{b.life}</TableCell><TableCell>{b.breath}</TableCell><TableCell className="text-muted-foreground">{b.use}</TableCell></TableRow>)}</TableBody>
+                <TableBody>{baseTypes.map((b) => <TableRow key={b.base}><TableCell className="whitespace-nowrap font-medium">{b.base}</TableCell><TableCell className="min-w-40">{b.look}</TableCell><TableCell className="whitespace-nowrap">{b.life}</TableCell><TableCell>{b.breath}</TableCell><TableCell className="text-muted-foreground">{b.use}</TableCell></TableRow>)}</TableBody>
               </Table>
             </CardContent>
           </Card>

@@ -11,7 +11,7 @@ export default function Economics() {
           <CardHeader><CardTitle>The business in one table</CardTitle></CardHeader>
           <CardContent>
             <Table><TableBody>
-              {unitEconomics.map((u) => <TableRow key={u.label}><TableCell className="text-muted-foreground">{u.label}</TableCell><TableCell className="text-right font-medium tabular-nums">{u.value}</TableCell></TableRow>)}
+              {unitEconomics.map((u) => <TableRow key={u.label}><TableCell className="whitespace-nowrap text-muted-foreground">{u.label}</TableCell><TableCell className="text-right font-medium tabular-nums">{u.value}</TableCell></TableRow>)}
             </TableBody></Table>
           </CardContent>
         </Card>
@@ -22,7 +22,7 @@ export default function Economics() {
               <Table>
                 <TableHeader><TableRow><TableHead>Tier</TableHead><TableHead>Client price</TableHead><TableHead>Source</TableHead><TableHead className="text-right">Cost</TableHead><TableHead className="text-right">GM</TableHead></TableRow></TableHeader>
                 <TableBody>
-                  {pricingTiers.map((t) => <TableRow key={t.tier}><TableCell className="font-medium">{t.tier}</TableCell><TableCell>{t.price}</TableCell><TableCell className="text-muted-foreground">{t.source}</TableCell><TableCell className="text-right">{t.cost}</TableCell><TableCell className="text-right">{t.margin}</TableCell></TableRow>)}
+                  {pricingTiers.map((t) => <TableRow key={t.tier}><TableCell className="whitespace-nowrap font-medium">{t.tier}</TableCell><TableCell className="whitespace-nowrap">{t.price}</TableCell><TableCell className="min-w-40 text-muted-foreground">{t.source}</TableCell><TableCell className="whitespace-nowrap text-right">{t.cost}</TableCell><TableCell className="whitespace-nowrap text-right">{t.margin}</TableCell></TableRow>)}
                 </TableBody>
               </Table>
             </CardContent>

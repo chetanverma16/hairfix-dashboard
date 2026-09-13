@@ -12,7 +12,7 @@ export default function Manufacturing() {
           <CardContent>
             <Table>
               <TableHeader><TableRow><TableHead>Stage</TableHead><TableHead>Where</TableHead><TableHead>India advantage</TableHead></TableRow></TableHeader>
-              <TableBody>{manufacturingVision.map((m) => <TableRow key={m.stage}><TableCell className="font-medium">{m.stage}</TableCell><TableCell className="text-muted-foreground">{m.where}</TableCell><TableCell>{m.advantage}</TableCell></TableRow>)}</TableBody>
+              <TableBody>{manufacturingVision.map((m) => <TableRow key={m.stage}><TableCell className="whitespace-nowrap font-medium">{m.stage}</TableCell><TableCell className="min-w-40 text-muted-foreground">{m.where}</TableCell><TableCell className="min-w-40">{m.advantage}</TableCell></TableRow>)}</TableBody>
             </Table>
           </CardContent>
         </Card>
