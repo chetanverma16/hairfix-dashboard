@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import {
   LayoutDashboard, TrendingUp, MapPin, Users, Calculator, Package,
   ShieldCheck, CalendarRange, AlertTriangle, Factory, Scissors,
+  SlidersHorizontal, Megaphone, Eye, FlaskConical,
 } from "lucide-react"
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
@@ -23,6 +24,12 @@ const nav = [
     { title: "Sourcing", href: "/sourcing", icon: Package },
     { title: "Compliance", href: "/compliance", icon: ShieldCheck },
     { title: "Launch plan", href: "/plan", icon: CalendarRange },
+  ]},
+  { group: "Track", items: [
+    { title: "Model", href: "/model", icon: SlidersHorizontal },
+    { title: "Ads test", href: "/ads-test", icon: Megaphone },
+    { title: "Mystery shop", href: "/mystery-shop", icon: Eye },
+    { title: "Samples", href: "/samples", icon: FlaskConical },
   ]},
   { group: "Watch", items: [
     { title: "Risks", href: "/risks", icon: AlertTriangle },
