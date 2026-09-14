@@ -1,6 +1,7 @@
 // Single source of truth for the dashboard. Edit numbers here, not in pages.
 // Figures come from the Sep 2026 research: Google Places data, IndiaMART /
 // Made-in-China listings, Delhi clinic price guides and our own model.
+// Corrected 14 Sep 2026: GST 5% no-ITC, Haryana S&E threshold, base-type lifespans.
 
 export const decision = {
   business: "Non-surgical hair replacement studio (hair patch / hair system fixing + monthly maintenance)",
@@ -28,12 +29,12 @@ export const weeklyActions = [
 export const unitEconomics = [
   { label: "Client install price (mid-premium, New Gurgaon)", value: "₹20,000–28,000" },
   { label: "Monthly maintenance visit", value: "₹1,500–3,500" },
-  { label: "System lifespan", value: "Lace/mono 6–12 mo · PU skin 3–6 mo" },
+  { label: "System lifespan", value: "Mono 6–12 mo · lace 2–6 mo · thin skin 1–3 mo · hybrid 4–12 mo" },
   { label: "Year-1 client value", value: "₹1.0–1.3L" },
   { label: "Landed cost, Indian stock system", value: "₹3,500–5,500" },
-  { label: "Landed cost, Qingdao custom (after IGST credit)", value: "~₹9,000" },
+  { label: "Landed cost, Qingdao custom (IGST not recoverable)", value: "~₹10,500" },
   { label: "Consumables per install", value: "₹600–1,200" },
-  { label: "Gross margin, install", value: "65–80%" },
+  { label: "Gross margin, install", value: "55–75% after 5% GST and non-recoverable IGST" },
   { label: "Gross margin, maintenance", value: "85–90%" },
   { label: "One technician capacity", value: "~12 installs + 60 maintenance / month ≈ ₹4.9L" },
   { label: "Fixed cost (room + tech + manager)", value: "₹1.2–2L / month" },
@@ -42,8 +43,8 @@ export const unitEconomics = [
 
 export const pricingTiers = [
   { tier: "Essential", price: "₹18,000–24,000", source: "Delhi/Chennai stock (mono / lace, Indian Remy)", cost: "₹3,500–5,500", margin: "70–80%" },
-  { tier: "Signature", price: "₹28,000–35,000", source: "Qingdao stock (hybrid lace + PU, Indian Remy)", cost: "₹6,000–8,000", margin: "72–78%" },
-  { tier: "Custom", price: "₹40,000–55,000", source: "Qingdao custom, mould-fitted, 6–8 weeks", cost: "₹9,000–14,000", margin: "72–78%" },
+  { tier: "Signature", price: "₹28,000–35,000", source: "Qingdao stock (hybrid lace + PU, Indian Remy)", cost: "₹7,000–9,500", margin: "68–75%" },
+  { tier: "Custom", price: "₹40,000–55,000", source: "Qingdao custom, mould-fitted, 6–8 weeks", cost: "₹10,500–15,500", margin: "65–72%" },
 ]
 
 // Year-1 revenue scenarios, one technician (₹ lakh)
@@ -62,6 +63,8 @@ export const scenarioNotes = [
   "New Gurgaon first outlet: expect 60–70% of these revenue numbers in year 1 (₹20–28K installs), but lower fixed costs narrow the profit gap.",
   "Year 2, base case, two technicians: ₹90L–1.1 Cr revenue, ₹30–40L profit, 150–200 active clients. Maintenance + replacements become ~40% of revenue.",
   "Retention is the lever: every client kept on maintenance is worth ~₹30K/year at ~90% margin.",
+  "Replacement cycles differ by base: thin skin 1–3 months, lace 2–6, mono 6–12. Revenue per client depends on which base you standardise on, not one 9–12 month cycle.",
+  "GST on services is 5% without input credit since Sep 2025. Import IGST and GST on rent are costs. The Model page strips GST from prices before counting revenue.",
 ]
 
 // Base-case monthly ramp used for the run-rate chart (₹ lakh)
@@ -91,14 +94,14 @@ export const clusters = [
 ]
 
 export const competitorsNearby = [
-  { name: "Lynx Hair Wig Studio", area: "Sector 82 (Vatika Town Square) & Sector 86 (SS Omnia)", rating: 5.0, reviews: 104, note: "7-branch chain. Korean patches, chemo wigs. Reviews say price is on the higher side. Your direct benchmark.", phone: "+91 72988 77776" },
-  { name: "Hair Zone", area: "Subhash Chowk, Sohna Road (Sec 33)", rating: 5.0, reviews: 137, note: "Salon + patch supplier. 'Affordable and premium' positioning.", phone: "+91 92894 43881" },
-  { name: "Hair Patch Centre", area: "Sector 61, Ulawas", rating: 5.0, reviews: 117, note: "Small, thin reviews.", phone: "+91 89201 99846" },
-  { name: "New Look Hair Fixing", area: "Sector 52A, Wazirabad", rating: 5.0, reviews: 625, note: "Uses Walker products, privacy curtains, 7am–11pm. Strong operator.", phone: "+91 95577 24412" },
-  { name: "Reline Hair World", area: "Sector 57, Sushant Lok 2", rating: 5.0, reviews: 231, note: "Premium positioning, clients from 18+ months. Proof the ₹30K+ tier works in Gurgaon.", phone: "+91 81818 16764" },
-  { name: "All Hair Solution", area: "Sector 31, HUDA Market", rating: 4.9, reviews: 903, note: "Volume leader; complaints: cameras in cabins, no power backup, sulphate shampoo.", phone: "+91 98994 49796" },
-  { name: "Anuj Hair Patch & Wig", area: "Sector 11, Model Town", rating: 4.9, reviews: 679, note: "Old Gurgaon volume operator.", phone: "+91 93121 27110" },
-  { name: "Premium Hair Mafia", area: "Sushant Lok 1, Sector 43", rating: 4.9, reviews: 190, note: "Near Golf Course Road; owner publicly argues with reviewers.", phone: "+91 97736 76748" },
+  { name: "Lynx Hair Wig Studio", area: "Sector 82 (Vatika Town Square) & Sector 86 (SS Omnia)", rating: 5.0, reviews: 104, note: "7-branch chain. Korean patches, chemo wigs. Reviews say price is on the higher side. Your direct benchmark.", prices: "Patches ₹1,500–37,000 listed; 9×7 mono ₹26,000; 8×6 silk ₹37,000; toppers ₹8–19.5K (lynxhairskin.in, Sep 2026)", phone: "+91 72988 77776" },
+  { name: "Hair Zone", area: "Subhash Chowk, Sohna Road (Sec 33)", rating: 5.0, reviews: 137, note: "Salon + patch supplier. 'Affordable and premium' positioning.", prices: "Not published", phone: "+91 92894 43881" },
+  { name: "Hair Patch Centre", area: "Sector 61, Ulawas", rating: 5.0, reviews: 117, note: "Small, thin reviews.", prices: "Not published", phone: "+91 89201 99846" },
+  { name: "New Look Hair Fixing", area: "Sector 52A, Wazirabad", rating: 5.0, reviews: 625, note: "Uses Walker products, privacy curtains, 7am–11pm. Strong operator.", prices: "Not published", phone: "+91 95577 24412" },
+  { name: "Reline Hair World", area: "Sector 57, Sushant Lok 2", rating: 5.0, reviews: 231, note: "Premium positioning, clients from 18+ months. Proof the ₹30K+ tier works in Gurgaon.", prices: "Not published", phone: "+91 81818 16764" },
+  { name: "All Hair Solution", area: "Sector 31, HUDA Market", rating: 4.9, reviews: 903, note: "Volume leader; complaints: cameras in cabins, no power backup, sulphate shampoo.", prices: "Not published", phone: "+91 98994 49796" },
+  { name: "Anuj Hair Patch & Wig", area: "Sector 11, Model Town", rating: 4.9, reviews: 679, note: "Old Gurgaon volume operator.", prices: "Not published", phone: "+91 93121 27110" },
+  { name: "Premium Hair Mafia", area: "Sushant Lok 1, Sector 43", rating: 4.9, reviews: 190, note: "Near Golf Course Road; owner publicly argues with reviewers.", prices: "Not published", phone: "+91 97736 76748" },
 ]
 
 export const complaintPatterns = [
@@ -109,6 +112,16 @@ export const complaintPatterns = [
   "Sales pressure to buy a new patch instead of repairing",
   "Rude reception, price changing mid-service",
   "Sample shown ≠ patch installed",
+]
+
+// Published NCR price points, Sep 2026. Anchors for the mystery-shop sheet.
+export const marketPriceReferences = [
+  { who: "Malhotra Hair (Delhi)", what: "Patches ₹10–35K; monthly servicing ₹600; mono lasts 10–12 mo, lace 6–8", source: "malhotrahair.in" },
+  { who: "Veronica (Gurgaon)", what: "Patches from ₹5,999; 20% off 6- or 12-month service packages; free demo", source: "veronicahairreplacement.com" },
+  { who: "Advance Clinic (Noida/Delhi)", what: "₹6,999–49,999 across 9 base styles; Bajaj zero-cost EMI", source: "advanceclinic.in" },
+  { who: "Majestic Derma (Delhi/Gurgaon)", what: "Human hair ₹20–50K; consult ₹500–2,000; maintenance ₹1,000–5,000 every 4–6 weeks", source: "majesticderma.com" },
+  { who: "Radiance (Delhi)", what: "₹5–50K; annual maintenance plan ₹10–15K/yr; visits every 4–6 weeks", source: "radiancehairstudio.com" },
+  { who: "Nile Hair Care (guide)", what: "Bonding ₹900–1,500/visit; client product spend ₹1,800–3,600/mo; all-in ₹52–80K/yr", source: "nilehaircare.com" },
 ]
 
 export const suppliersIndia = [
@@ -135,9 +148,8 @@ export const landedCost = [
   { line: "CIF value", amount: "~₹7,400" },
   { line: "Basic Customs Duty, HSN 6704 (verify on ICEGATE; ~20%)", amount: "~₹1,480" },
   { line: "Social Welfare Surcharge (10% of BCD)", amount: "~₹150" },
-  { line: "IGST 18% — recoverable as ITC", amount: "~₹1,625" },
-  { line: "Landed before ITC", amount: "~₹10,650" },
-  { line: "Landed after IGST credit", amount: "~₹9,000" },
+  { line: "IGST 18% — a cost under the 5% no-ITC services regime", amount: "~₹1,625" },
+  { line: "Landed cost", amount: "~₹10,650" },
 ]
 
 export const baseTypes = [
@@ -151,15 +163,17 @@ export const baseTypes = [
 
 export const compliance = [
   { item: "Entity", detail: "Run under Stackframe Studios Pvt Ltd (add object clause) or a separate proprietorship for liability isolation", cost: "₹5–10K", time: "1–2 wk", status: "todo" },
-  { item: "GST", detail: "Services threshold is ₹20L but register voluntarily day one to claim IGST on imports + ITC on rent/consumables. SAC 999729 / 999721, 18%", cost: "Free", time: "7 d", status: "todo" },
+  { item: "GST", detail: "Beauty and wellbeing services (SAC 99972x) are 5% WITHOUT input credit since 22 Sep 2025 (Notif. 9/2025). IGST on imports and GST on rent are now a cost, not a credit. Register at ₹20L, or earlier for invoice credibility. CA question: is an install a service (5%, no ITC) or a supply of goods under HSN 6704 (likely 18% with ITC)? The answer decides pricing and import economics.", cost: "Free", time: "7 d", status: "todo" },
   { item: "IEC", detail: "Needed to import from China", cost: "Free", time: "2 d", status: "todo" },
-  { item: "Shop & Establishment (Haryana)", detail: "Mandatory for premises with staff", cost: "₹1–5K", time: "1 wk", status: "todo" },
+  { item: "Shop & Establishment (Haryana)", detail: "Applies only to establishments with 20+ workers since the Feb 2026 amendment. Keep Code on Wages registers (wage register, slips, attendance) from the first hire. ESI at 10 employees, EPF at 20.", cost: "—", time: "—", status: "na" },
   { item: "Trade licence (MCG)", detail: "Salon/clinic-type premises", cost: "₹2–10K", time: "2–4 wk", status: "todo" },
   { item: "Trademark", detail: "Class 44 (services) + Class 26 (hair goods); MSME fee ₹4,500/class", cost: "₹10–20K", time: "12–18 mo (application no. in days)", status: "todo" },
   { item: "Udyam / MSME", detail: "Free, unlocks fee discounts", cost: "Free", time: "10 min", status: "todo" },
   { item: "Insurance", detail: "Public liability + professional indemnity, ₹5–10L cover", cost: "₹8–15K/yr", time: "1 wk", status: "todo" },
   { item: "Client consent & photos", detail: "Written consent, secure storage (DPDP Act); first-name-only reviews", cost: "—", time: "—", status: "todo" },
   { item: "Hygiene protocol", detail: "Sterilisation, disposable capes/gloves, 48-hr adhesive patch test", cost: "₹5–10K", time: "—", status: "todo" },
+  { item: "Wages floor", detail: "Haryana skilled minimum wage ₹18,500/month from 1 Apr 2026. Technician fixed pay must clear this; commission sits on top. Contractor commission above ₹20K/yr attracts 2% TDS.", cost: "—", time: "—", status: "todo" },
+  { item: "DPDP consent", detail: "Obligations enforceable 13 May 2027. Per-purpose consent (treatment record, marketing, publishing photos), withdrawable, recorded with notice version and timestamp. Built into the client record in phase 2.", cost: "—", time: "—", status: "todo" },
   { item: "Not required", detail: "CDSCO/drug licence, BIS, FSSAI. LMPC only if retailing packaged patches", cost: "—", time: "—", status: "na" },
 ]
 

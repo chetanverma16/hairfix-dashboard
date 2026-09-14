@@ -33,10 +33,10 @@ export default function Sourcing() {
         </TabsContent>
         <TabsContent value="landed">
           <Card>
-            <CardHeader><CardTitle>Landed cost of an $80 Qingdao custom system</CardTitle><CardDescription>Verify BCD for HSN 6704 on ICEGATE before the first shipment; use a CHA.</CardDescription></CardHeader>
+            <CardHeader><CardTitle>Landed cost of an $80 Qingdao custom system</CardTitle><CardDescription>Verify BCD for HSN 6704 on ICEGATE before the first shipment; use a CHA. IGST is not recoverable under the 5% services regime.</CardDescription></CardHeader>
             <CardContent>
               <Table><TableBody>{landedCost.map((l) => <TableRow key={l.line} className={l.line.startsWith("Landed") ? "font-medium" : ""}><TableCell>{l.line}</TableCell><TableCell className="whitespace-nowrap text-right tabular-nums">{l.amount}</TableCell></TableRow>)}</TableBody></Table>
-              <p className="mt-4 text-sm text-muted-foreground">A Qingdao piece lands at ~₹9K net vs ₹4–6K Indian. It is better made, lasts longer, and lets you sell a ₹35–45K tier credibly. Opening inventory: 6–8 Indian + 4–5 Qingdao stock pieces in 8×6&quot; and 9×7&quot;, #1B ≈ ₹80–90K.</p>
+              <p className="mt-4 text-sm text-muted-foreground">A Qingdao piece lands at ~₹10.5K vs ₹4–6K Indian. It is better made, lasts longer, and lets you sell a ₹35–45K tier credibly. Opening inventory: 6–8 Indian + 4–5 Qingdao stock pieces in 8×6&quot; and 9×7&quot;, #1B ≈ ₹80–90K.</p>
             </CardContent>
           </Card>
         </TabsContent>

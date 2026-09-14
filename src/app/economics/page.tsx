@@ -5,7 +5,7 @@ import { pricingTiers, unitEconomics } from "@/data/insights"
 
 export default function Economics() {
   return (
-    <PageShell title="Unit economics" subtitle="Why a service with a 20–30% product cost and monthly repeat visits works">
+    <PageShell title="Unit economics" subtitle="Why a service with a 25–35% all-in product cost and monthly repeat visits still works">
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader><CardTitle>The business in one table</CardTitle></CardHeader>
