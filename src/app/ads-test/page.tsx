@@ -120,7 +120,7 @@ export default async function AdsTest() {
                     </TableCell>
                     <TableCell className="whitespace-nowrap text-muted-foreground">{l.area ?? "—"}</TableCell>
                     <TableCell className="whitespace-nowrap">
-                      <form action={setLeadStatus} className="flex items-center gap-1">
+                      <form key={`${l.id}-${l.status}-${l.nextFollowUp ?? ""}`} action={setLeadStatus} className="flex items-center gap-1">
                         <input type="hidden" name="id" value={l.id} />
                         <select name="status" defaultValue={l.status} className={smallControl}>
                           {statuses.map((s) => <option key={s} value={s}>{statusLabel[s]}</option>)}
