@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useSyncExternalStore } from "react"
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
@@ -41,26 +41,42 @@ const groups: { title: string; controls: Control[] }[] = [
   ]},
 ]
 
-function load(): ModelInputs {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) return { ...defaultInputs, ...JSON.parse(raw) }
-  } catch {}
-  return defaultInputs
+// localStorage as an external store: the server snapshot is the defaults, the
+// client snapshot is whatever was saved. Avoids setState-in-effect and hydration drift.
+const listeners = new Set<() => void>()
+let cache: { raw: string | null; value: ModelInputs } | null = null
+
+function readStore(): ModelInputs {
+  let raw: string | null = null
+  try { raw = localStorage.getItem(STORAGE_KEY) } catch {}
+  if (cache && cache.raw === raw) return cache.value
+  let value = defaultInputs
+  if (raw) {
+    try { value = { ...defaultInputs, ...JSON.parse(raw) } } catch {}
+  }
+  cache = { raw, value }
+  return value
+}
+
+function writeStore(value: ModelInputs) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(value)) } catch {}
+  cache = null
+  listeners.forEach((l) => l())
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener)
+  window.addEventListener("storage", listener)
+  return () => {
+    listeners.delete(listener)
+    window.removeEventListener("storage", listener)
+  }
 }
 
 export function ModelPlayground() {
-  const [inputs, setInputs] = useState<ModelInputs>(defaultInputs)
-  const [hydrated, setHydrated] = useState(false)
-
-  useEffect(() => {
-    setInputs(load())
-    setHydrated(true)
-  }, [])
-  useEffect(() => {
-    if (!hydrated) return
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(inputs)) } catch {}
-  }, [inputs, hydrated])
+  const inputs = useSyncExternalStore(subscribe, readStore, () => defaultInputs)
+  const setInputs = (update: ModelInputs | ((s: ModelInputs) => ModelInputs)) =>
+    writeStore(typeof update === "function" ? update(readStore()) : update)
 
   const result = useMemo(() => runModel(inputs), [inputs])
   const chartData = result.rows.map((r) => ({ month: `M${r.month}`, revenue: r.revenue / 1e5, profit: r.profit / 1e5, cash: r.cash / 1e5 }))
