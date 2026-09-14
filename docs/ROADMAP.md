@@ -1,5 +1,7 @@
 # Hairfix roadmap: from decision dashboard to business system
 
+Status: Phase 1 shipped 14 Sep 2026. Phase 2 not started.
+
 Written 14 Sep 2026 from four research passes (salon software features, studio operations, WhatsApp automation, Indian compliance and payments). Numbers marked [U] are unverified. Sources are at the end of each section.
 
 ## 0. Findings that change the plan
@@ -126,6 +128,35 @@ Core entities and their owners by phase. Every table has id, created_at, updated
 2. Whether any Haryana registration remains below 20 workers.
 3. Skill category for hair technicians under the Haryana wage schedule.
 4. Whether the 5% no-ITC regime or a goods-led 18% structure is better given import volumes.
+
+## 6a. AI voice calling: complement to WhatsApp, not a replacement
+
+Researched 14 Sep 2026. Costs are list prices; Hindi quality claims are vendor claims.
+
+**What it costs.** Indian platforms (Bolna, Caller Digital, Ravan, Gnani, Exotel AI) bundle telephony, speech and the model at roughly ₹4 to 9 per minute all-in; Bolna is the cheapest published at ₹4 to 6 at volume. US platforms (Vapi $0.05, Retell $0.07, ElevenLabs $0.08 per minute platform fee) land at $0.13 to 0.32 per minute fully loaded and need an Indian telephony partner (Exotel, Plivo, Ozonetel) for a local caller ID, which adds ₹0.60 to 1.50 per minute plus number rental. At 300 clients and 2 calls per client a month of 90 seconds each, that is about 900 minutes, so ₹4,000 to 8,000 a month on an Indian platform. WhatsApp for the same volume is under ₹500. Sarvam is the Indic speech layer several of these run on, not a product you deploy directly.
+
+**Rules for outbound calls.** TRAI's TCCCPR amendments of Feb 2025 apply to calls in a way they do not to WhatsApp. Promotional calls must go out on 140-series numbers after scrubbing against the DND registry; transactional and service calls on 160-series numbers. Explicit consent for a transaction is valid 7 days; inferred consent lasts as long as the client relationship. Robocalls and auto-diallers must be disclosed to the telecom provider in advance, and TRAI has signalled AI-disclosure rules are coming. Call recording needs upfront, specific consent under the DPDP rules. India is the most spam-called market in the world (95% of users report daily unwanted calls), so an unknown number calling about hair loss is a trust problem in an embarrassment-driven category.
+
+**Where a call beats a message.** Speed to lead: a callback inside 5 minutes converts far better than one after 30 (the widely cited MIT/InsideSales figures are 21x more likely to qualify; treat as directional). An AI agent that calls a new ad lead back within a minute, in Hindi, and books a consultation is the single strongest use. Appointment confirmation calls also work: healthcare campaigns report 94% confirm or reschedule on a 60 to 90 second AI call. No-show recovery is the third.
+
+**Where WhatsApp wins.** Maintenance-due reminders, post-service check-ins, payment links, review requests. These are asynchronous, cheap, silent, and leave a written record the client can act on later. Indian clinic playbooks consistently put WhatsApp first for follow-up and rebooking.
+
+**Verdict for this studio.**
+
+| Use case | Channel | Why |
+|---|---|---|
+| New ad lead, first contact | WhatsApp reply within the free 72-hour window, then AI call if no reply in 10 minutes | Speed matters; the lead started on WhatsApp so the number is expected |
+| Consultation booking | AI call or manager call | Conversation converts better than a form |
+| Appointment reminder 24h and 2h | WhatsApp with confirm button; AI call only if no confirmation by 2h | Cheap first, voice as escalation |
+| No-show recovery | AI call same day, in Hindi | A message is easy to ignore after embarrassment |
+| Maintenance due at day 28 | WhatsApp | Routine, written, low cost |
+| Post-service check-in at day 3 | WhatsApp | Client may not want to talk about it |
+| Payment link, receipt | WhatsApp | Needs a tappable link |
+| Review request | WhatsApp | Needs a tappable link |
+
+**Build order.** Phase 2 ships WhatsApp only. Phase 3 adds AI calling for two flows: lead callback and no-show recovery, on an Indian platform with a 160-series number, Hindi-first, with a "press 1 to talk to a person" escape and recording consent at the top of the call. Provider is chosen then, after a trial of two platforms on 50 real leads. The `messages` table gains a `channel` of `call` and stores transcript and outcome so calls and messages share one timeline per client.
+
+Sources: myoperator.com and caller.digital India voice AI comparisons 2026, dvaarik.com pricing index, ravan.ai cost guide, bolti.co.in on Bolna pricing, retellai.com and medium.com Vapi/Retell/Bland cost comparisons, cloudtalk.io Exotel pricing, securiti.ai and ssrana.in on the TCCCPR 2025 amendments, rootle.ai on voice AI compliance, frejun.com on call recording, theprint.in LocalCircles spam survey, getnextphone.com and clientmagnet.in on speed to lead, scalifylabs.com and engageoagency.com on Indian clinic reminders.
 
 ## 7. Sources
 
